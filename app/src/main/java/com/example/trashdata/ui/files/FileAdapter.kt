@@ -8,11 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trashdata.R
 
-// Simple display model — no dependency on data layer
+// Display model — Member 1 will map their FileItem into this
 data class FileDisplayItem(
     val name: String,
-    val meta: String,  // e.g. "187 MB · 92d ago"
-    val badge: String  // e.g. "90d+"
+    val meta: String,   // e.g. "187 MB · 92d ago"
+    val badge: String   // e.g. "90d+"
 )
 
 class FileAdapter(

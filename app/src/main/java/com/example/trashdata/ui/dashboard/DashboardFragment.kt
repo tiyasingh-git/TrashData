@@ -21,6 +21,7 @@ class DashboardFragment : Fragment() {
     private lateinit var tvLargeCount: TextView
     private lateinit var tvDuplicateCount: TextView
     private lateinit var rvTopForgotten: RecyclerView
+    private lateinit var tvEmptyState: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,27 +40,22 @@ class DashboardFragment : Fragment() {
         tvLargeCount     = view.findViewById(R.id.tvLargeCount)
         tvDuplicateCount = view.findViewById(R.id.tvDuplicateCount)
         rvTopForgotten   = view.findViewById(R.id.rvTopForgotten)
+        tvEmptyState     = view.findViewById(R.id.tvEmptyState)
 
-        // Dummy data — Member 2 (RuleEngine) will replace these values
-        tvClutterScore.text   = "47"
-        tvScoreLabel.text     = "Moderate"
-        progressClutter.progress = 47
-        tvForgottenCount.text = "23"
-        tvWastedSize.text     = "1.2 GB"
-        tvLargeCount.text     = "8"
-        tvDuplicateCount.text = "3"
+        // Placeholders — Member 2 (RuleEngine) will populate these
+        tvClutterScore.text      = "--"
+        tvScoreLabel.text        = "Not scanned yet"
+        progressClutter.progress = 0
+        tvForgottenCount.text    = "--"
+        tvWastedSize.text        = "--"
+        tvLargeCount.text        = "--"
+        tvDuplicateCount.text    = "--"
 
-        // Dummy file list — Member 1 (FileScanner) will replace this
-        val dummyFiles = listOf(
-            DashboardFileItem("project_backup.zip", "187 MB", "92d ago", "90d+"),
-            DashboardFileItem("old_resume.pdf",     "2.4 MB", "187d ago", "90d+"),
-            DashboardFileItem("screenshot_43.png",  "4.1 MB", "72d ago",  "60d+"),
-            DashboardFileItem("meeting_notes.docx", "0.8 MB", "65d ago",  "60d+"),
-            DashboardFileItem("dataset_raw.csv",    "44 MB",  "34d ago",  "30d+")
-        )
+        // Empty state shown until Member 1 provides real data
+        tvEmptyState.visibility   = View.VISIBLE
+        rvTopForgotten.visibility = View.GONE
 
         rvTopForgotten.layoutManager = LinearLayoutManager(requireContext())
         rvTopForgotten.isNestedScrollingEnabled = false
-        rvTopForgotten.adapter = DashboardAdapter(dummyFiles)
     }
 }

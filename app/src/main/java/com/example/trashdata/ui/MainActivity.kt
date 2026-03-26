@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.trashdata.R
 import com.example.trashdata.ui.dashboard.DashboardFragment
 import com.example.trashdata.ui.files.FileListFragment
+import com.example.trashdata.ui.settings.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_dashboard -> loadFragment(DashboardFragment())
                 R.id.nav_files     -> loadFragment(FileListFragment())
-                R.id.nav_settings  -> loadFragment(DashboardFragment())
+                R.id.nav_settings  -> loadFragment(SettingsFragment())
             }
             true
         }

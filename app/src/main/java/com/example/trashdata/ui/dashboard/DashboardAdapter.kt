@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trashdata.R
 
-// Simple data class just for display — no dependency on data layer
+// Display model — Member 1 will map their FileItem into this
 data class DashboardFileItem(
     val name: String,
     val size: String,

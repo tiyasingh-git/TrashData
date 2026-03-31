@@ -35,12 +35,10 @@ class MainActivity : AppCompatActivity() {
 
         prefs = getSharedPreferences("trashdata_prefs", 0)
 
-        // Show splash for 2.5 seconds then load main UI
         Handler(Looper.getMainLooper()).postDelayed({
             setContentView(R.layout.activity_main)
             setupNav()
 
-            // Show permission dialog only on first ever launch
             val isFirstLaunch = prefs.getBoolean("first_launch", true)
             if (isFirstLaunch) {
                 showPermissionDialog()
@@ -87,11 +85,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestStoragePermission() {
+        // API 33+ (Android 13+): request Documents & Downloads access specifically
+        // API 32 and below: READ_EXTERNAL_STORAGE covers Downloads and Documents
         val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arrayOf(
                 Manifest.permission.READ_MEDIA_IMAGES,
-                Manifest.permission.READ_MEDIA_VIDEO,
-                Manifest.permission.READ_MEDIA_AUDIO
+                Manifest.permission.READ_MEDIA_VIDEO
             )
         } else {
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
